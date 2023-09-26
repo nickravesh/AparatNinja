@@ -51,33 +51,33 @@ def get_video_url(videoUrl: str, videoQuality: str) -> str:
     # Move the cursor to the specified element without clicking
     actions.move_to_element(elementToHoverOver).perform()
 
-    # Locate the element with the link you want to copy (change this selector)
-    element_with_link = driver.find_element(By.ID, videoQuality) # sample input: '144p'
+    # Locate the element with the download link (download link needs be extracted from)
+    elementContainingDownloadLink = driver.find_element(By.ID, videoQuality) # sample input: '144p'
 
     # Get the value of the 'href' attribute (or any other attribute containing the link)
-    videoDownloadURL = element_with_link.get_attribute("href")
+    videoDownloadURL = elementContainingDownloadLink.get_attribute("href")
 
     # Print the link URL for debug
     #print("Link:", videoDownloadURL)
 
-    # Locate the <h1> element
-    h1_element = driver.find_element(By.CSS_SELECTOR, ".sc-hKwDye")
+    # Locate the element containing video title
+    videoTitleElement = driver.find_element(By.CSS_SELECTOR, ".sc-hKwDye")
 
     # Get the text content of the <h1> element
-    video_title = h1_element.text
+    video_title = videoTitleElement.text
 
     # Print the video title
     print("Video Title:", video_title)    
 
-    with open("vidTitle.txt", "w") as handleFile:
-        handleFile.write(video_title)
+    # close the driver as its no longer needed
+    driver.quit()
 
     return videoDownloadURL, video_title
 
 
 def download_video(videoDownloadURL: str, videoTitle: str):
     response = requests.get(videoDownloadURL)
-    print(response)
+    print(response) # TODO: comment this line when project done (its for debug only)
 
     if response.status_code == 200:
         print("The request was successful; you can proceed to save the video.")
