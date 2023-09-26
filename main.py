@@ -57,18 +57,31 @@ def get_video_url(videoUrl: str, videoQuality: str) -> str:
     # Get the value of the 'href' attribute (or any other attribute containing the link)
     videoDownloadURL = element_with_link.get_attribute("href")
 
-    # Print the copied link URL
-    print("Copied Link:", videoDownloadURL)
-    return videoDownloadURL
+    # Print the link URL for debug
+    #print("Link:", videoDownloadURL)
+
+    # Locate the <h1> element
+    h1_element = driver.find_element(By.CSS_SELECTOR, ".sc-hKwDye")
+
+    # Get the text content of the <h1> element
+    video_title = h1_element.text
+
+    # Print the video title
+    print("Video Title:", video_title)    
+
+    with open("vidTitle.txt", "w") as handleFile:
+        handleFile.write(video_title)
+
+    return videoDownloadURL, video_title
 
 
-def download_video(videoDownloadURL: str):
+def download_video(videoDownloadURL: str, videoTitle: str):
     response = requests.get(videoDownloadURL)
     print(response)
 
     if response.status_code == 200:
         print("The request was successful; you can proceed to save the video.")
-        with open("file.mp4", "wb") as fileHandler:
+        with open(f"{videoTitle}.mp4", "wb") as fileHandler:
             fileHandler.write(response.content)
     else:
         print("Faild to download the video")
@@ -76,7 +89,8 @@ def download_video(videoDownloadURL: str):
 
 
 download_link = get_video_url(videoUrl='https://www.aparat.com/v/NnJhV', videoQuality='240p')
-download_video(download_link)
+print(type(download_link))
+download_video(download_link[0], download_link[1])
 
 # click on the video download link
 # time.sleep(1)
