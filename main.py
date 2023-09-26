@@ -1,11 +1,22 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.action_chains import ActionChains
 import time
+import requests
 
+
+# enable the firefox options to set arguments
+firefoxOptions = webdriver.FirefoxOptions()
+firefoxOptions.add_argument("--headless")
+#firefoxOptions.add_argument("--mute-audio")
+#firefoxOptions.add_argument("--no-sandbox")
+#firefoxOptions.add_argument("--disable-dev-shm-usage")
+#firefoxOptions.add_argument('--disable-extensions')
+#firefoxOptions.add_argument('--disable-gpu')
 # set the web driver to firefox
-driver = webdriver.Firefox()
+driver = webdriver.Firefox(options=firefoxOptions)
 # navigate to video page
 driver.get("https://www.aparat.com/v/sUzJX")
 # wait for the page to load for the maximum of 30 seconds
@@ -38,6 +49,30 @@ actions = ActionChains(driver)
 # Move the cursor to the specified element without clicking
 actions.move_to_element(elementToHoverOver).perform()
 
+# Locate the element with the link you want to copy (change this selector)
+element_with_link = driver.find_element(By.ID, '144p')
+
+# Get the value of the 'href' attribute (or any other attribute containing the link)
+link_url = element_with_link.get_attribute("href")
+
+# Print the copied link URL
+print("Copied Link:", link_url)
+
+
+
+response = requests.get(link_url)
+print(response)
+
+if response.status_code == 200:
+    print("The request was successful; you can proceed to save the video.")
+    with open("file.mp4", "wb") as fileHandler:
+        fileHandler.write(response.content)
+else:
+    print("Faild to download the video")
+    print(f"the response status code was: {response.status_code}")
+
+
+
 # click on the video download link
 # time.sleep(1)
 # element4 = driver.find_element(By.CSS_SELECTOR, '.dropdown-content > div:nth-child(1)')
@@ -57,13 +92,3 @@ actions.move_to_element(elementToHoverOver).perform()
 
 # # Print the current URL
 # print("Current URL:", pageURL)
-
-
-# Locate the element with the link you want to copy (change this selector)
-element_with_link = driver.find_element(By.ID, '144p')
-
-# Get the value of the 'href' attribute (or any other attribute containing the link)
-link_url = element_with_link.get_attribute("href")
-
-# Print the copied link URL
-print("Copied Link:", link_url)
