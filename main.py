@@ -1,10 +1,12 @@
+import os
+import time
+import requests
+from tqdm import tqdm
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.action_chains import ActionChains
-import time
-import requests
 
 
 def get_video_url(videoUrl: str, videoQuality: str) -> str:
@@ -76,16 +78,33 @@ def get_video_url(videoUrl: str, videoQuality: str) -> str:
 
 
 def download_video(videoDownloadURL: str, videoTitle: str):
-    response = requests.get(videoDownloadURL)
-    print(response) # TODO: comment this line when project done (its for debug only)
+    try:
+        response = requests.get(videoDownloadURL, stream=True)
+        response.raise_for_status()
 
-    if response.status_code == 200:
-        print("The request was successful; you can proceed to save the video.")
-        with open(f"{videoTitle}.mp4", "wb") as fileHandler:
-            fileHandler.write(response.content)
-    else:
-        print("Faild to download the video")
-        print(f"the response status code was: {response.status_code}")
+        # Check if the file already exists
+        if os.path.isfile(f"{videoTitle}.mp4"):
+            print(f"The file '{videoTitle}.mp4' already exists.")
+            return
+
+        # Get the file size for the progress bar
+        videoFileSize = int(response.headers.get('content-length', 0))
+
+        with open(f"{videoTitle}.mp4", "wb") as fileHandler, tqdm(
+            desc=f"Downloading {videoTitle}.mp4",
+            total=videoFileSize,
+            unit_scale=True,
+            unit_divisor=1024,
+        ) as progressBar:
+            for data in response.iter_content(chunk_size=1024):
+                fileHandler.write(data)
+                progressBar.update(len(data))
+
+        print(f"Download of '{videoTitle}.mp4' complete.")
+    except requests.exceptions.HTTPError as e:
+        print(f"Failed to download the video: {e}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
 
 download_link = get_video_url(videoUrl='https://www.aparat.com/v/NnJhV', videoQuality='240p')
