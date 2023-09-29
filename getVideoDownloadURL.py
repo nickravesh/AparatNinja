@@ -30,7 +30,7 @@ def get_video_download_url(videoUrl: str, videoQuality: str) -> tuple:
     aparat_rightMenue.click()
 
     # click on the middle of the page just to close the opened menue
-    time.sleep(0.2)
+    time.sleep(0.5)
     aparat_pageCenter = driver.find_element(By.XPATH, '/html/body/div[2]/main/div[1]')
     aparat_pageCenter.click()
 
@@ -39,7 +39,7 @@ def get_video_download_url(videoUrl: str, videoQuality: str) -> tuple:
     aparat_rightMenue.send_keys(Keys.PAGE_DOWN)
 
     # click on the download button of the video
-    time.sleep(1.5)
+    time.sleep(2)
     element3 = driver.find_element(By.CSS_SELECTOR, 'div.dJTScK:nth-child(1) > button:nth-child(1)')
     element3.click()
 
@@ -75,4 +75,5 @@ def get_video_download_url(videoUrl: str, videoQuality: str) -> tuple:
 
 
 # usage:
-#download_link_and_video_title = get_video_download_url(videoUrl='https://www.aparat.com/v/example', videoQuality='240p')
+# download_link_and_video_title = get_video_download_url(videoUrl='https://www.aparat.com/v/NnJhV', videoQuality='240p')
+# print(download_link_and_video_title)
