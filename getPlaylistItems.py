@@ -1,7 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
-def get_playlist_items_url(playlistURL: str):
+def get_playlist_items_url(playlistURL: str) -> list:
 
     firefoxOptions = webdriver.FirefoxOptions()
     firefoxOptions.add_argument("--headless")
@@ -33,6 +33,8 @@ def get_playlist_items_url(playlistURL: str):
 
     # Close the WebDriver when done
     driver.quit()
+
+    return playlist_urls
 
 
 # usage:
