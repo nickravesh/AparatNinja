@@ -11,10 +11,10 @@ def get_video_download_url(videoUrl: str, videoQuality: str) -> tuple:
     # enable the firefox options to set arguments
     firefoxOptions = webdriver.FirefoxOptions()
     firefoxOptions.add_argument("--headless")
-    #firefoxOptions.add_argument("--mute-audio")
+    firefoxOptions.add_argument("--mute-audio")
     #firefoxOptions.add_argument("--no-sandbox")
     #firefoxOptions.add_argument("--disable-dev-shm-usage")
-    #firefoxOptions.add_argument('--disable-extensions')
+    firefoxOptions.add_argument('--disable-extensions')
     #firefoxOptions.add_argument('--disable-gpu')
     # set the web driver to firefox
     driver = webdriver.Firefox(options=firefoxOptions)
