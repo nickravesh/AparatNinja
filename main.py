@@ -9,13 +9,13 @@ import downloadVideo
 userPlaylistURL = text(message="Enter The Playlist URL:\n",
                        qmark=">",
                        style=Style([('question', 'fg:#cc5454'), ('qmark', 'bold')])).ask()
-print("part 1 passed")
+
 # fetch the list of videos inside the given playlist
 listOfURLs = getPlaylistItems.get_playlist_items_url(userPlaylistURL)
-print("part 2 passed")
+
 # get the first video of the playlist to check for available qualities for it
 sampleVideoFromPlaylist = getVideoDownloadURL.get_video_download_url(listOfURLs[0], "144p")
-print("part 3 passed")
+
 # get user preferred quality for downloading videos
 userSelectedQuality = select(message="In What Quality You Want To Download Videos:",
                              choices=checkAvailableQualities.check_available_qualities(sampleVideoFromPlaylist[0]),
