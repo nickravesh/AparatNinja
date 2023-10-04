@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 
 def get_playlist_items_url(playlistURL: str) -> list:
+    print(f"{Fore.LIGHTCYAN_EX}--Extracting playlist videos URLs--{Fore.RESET}")
     playlist_urls = []
 
     for number in range(5):
@@ -32,8 +33,9 @@ def get_playlist_items_url(playlistURL: str) -> list:
                 playlist_urls.append(video_url)
 
             # Print the extracted video URLs
-            for url in playlist_urls:
-                print(url)
+            print(f"{Fore.LIGHTGREEN_EX}--DONE!--{Fore.RESET}")
+            #for url in playlist_urls:
+            #    print(url)
 
             # Close the WebDriver and return the URLs if successful
             driver.quit()
@@ -50,7 +52,7 @@ def get_playlist_items_url(playlistURL: str) -> list:
             time.sleep(2)
 
     # print error message and exit in case of unsuccessful connection
-    print(f"{Fore.LIGHTRED_EX}Unable to connect, Please check your internet connection{Fore.RESET}")
+    print(f"{Fore.LIGHTRED_EX}Unable to connect, Please check your internet connection and try again.{Fore.RESET}")
     return exit()
 
 
