@@ -6,6 +6,14 @@ import checkAvailableQualities
 import downloadVideo
 
 # get Aparat playlist url from user
+print("""
+    ___                           __  _   ___         _      
+   /   |  ____  ____ __________ _/ /_/ | / (_)___    (_)___ _
+  / /| | / __ \/ __ `/ ___/ __ `/ __/  |/ / / __ \  / / __ `/
+ / ___ |/ /_/ / /_/ / /  / /_/ / /_/ /|  / / / / / / / /_/ / 
+/_/  |_/ .___/\__,_/_/   \__,_/\__/_/ |_/_/_/ /_/_/ /\__,_/  
+      /_/                                      /___/         
+""")
 userPlaylistURL = text(message="Enter The Playlist URL:\n",
                        qmark=">",
                        style=Style([('question', 'fg:#cc5454'), ('qmark', 'bold')])).ask()
