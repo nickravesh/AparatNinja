@@ -17,10 +17,12 @@ def download_video(videoDownloadURL: str, videoTitle: str):
         videoFileSize = int(response.headers.get('content-length', 0))
 
         with open(f"{videoTitle}.mp4", "wb") as fileHandler, tqdm(
-            desc=f"Downloading {videoTitle}.mp4",
+            #desc=f"Downloading {videoTitle}.mp4",
+            desc=f"Downloading...",
             total=videoFileSize,
             unit_scale=True,
             unit_divisor=1024,
+            unit="B",
         ) as progressBar:
             for data in response.iter_content(chunk_size=1024):
                 fileHandler.write(data)
