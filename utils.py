@@ -1,7 +1,7 @@
+import sys
 import time
 import threading
 from colorama import init, Fore, Style
-import sys
 
 # Initialize colorama
 init(autoreset=True)
@@ -10,7 +10,7 @@ class LoadingAnimation:
     def __init__(self):
         # Constants
         self.LOADING_FRAMES = ["■□□□", "□■□□", "□□■□", "□□□■"]
-        self.LOADING_MESSAGE = "The task is in progress, please wait."
+        self.LOADING_MESSAGE = "The task is in progress, please wait..."
         self.CLEAR_MESSAGE = " " * 100  # Adjust the number of spaces as needed
 
         # Flags to control the loading animation
@@ -48,7 +48,7 @@ class LoadingAnimation:
                 if custom_message:
                     print(custom_message)  # Print a custom message if provided
                 else:
-                    print(" Task completed")  # Print "Task completed" as the default message
+                    print(" Task completed!")  # Print "Task completed" as the default message
 
 # Create an instance of the LoadingAnimation class
 loading_animation = LoadingAnimation()
