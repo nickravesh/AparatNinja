@@ -4,8 +4,8 @@ import getPlaylistItems
 import getVideoDownloadURL
 import checkAvailableQualities
 import downloadVideo
+from utils import loading_animation
 
-# get Aparat playlist url from user
 print("""
     ___                           __  _   ___         _      
    /   |  ____  ____ __________ _/ /_/ | / (_)___    (_)___ _
@@ -14,13 +14,15 @@ print("""
 /_/  |_/ .___/\__,_/_/   \__,_/\__/_/ |_/_/_/ /_/_/ /\__,_/  
       /_/                                      /___/         
 """)
+# get Aparat playlist url from user
 userPlaylistURL = text(message="Enter The Playlist URL:\n",
                        qmark=">",
                        style=Style([('question', 'fg:#cc5454'), ('qmark', 'bold')])).ask()
 
 # fetch the list of videos inside the given playlist
+loading_animation.show_loading_animation(custom_message="Fetching Playlist Items...")
 listOfURLs = getPlaylistItems.get_playlist_items_url(userPlaylistURL)
-
+loading_animation.show_loading_animation(False, custom_message="Fetching Playlist Items...DONE!")
 # get the first video of the playlist to check for available qualities for it
 sampleVideoFromPlaylist = getVideoDownloadURL.get_video_download_url(listOfURLs[0], "144p")
 
