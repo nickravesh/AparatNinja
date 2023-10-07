@@ -46,9 +46,9 @@ class LoadingAnimation:
                 self.loading_thread.join()  # Wait for the loading animation thread to finish
                 sys.stdout.write("\r" + self.CLEAR_MESSAGE + "\r")  # Clear the loading message
                 if custom_message:
-                    print(custom_message)  # Print a custom message if provided
+                    print(custom_message, end="")  # Print a custom message if provided
                 else:
-                    print(" Task completed!")  # Print "Task completed" as the default message
+                    print(" Task completed!", end="")  # Print "Task completed" as the default message
 
 # Create an instance of the LoadingAnimation class
 loading_animation = LoadingAnimation()
