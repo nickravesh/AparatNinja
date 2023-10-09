@@ -15,7 +15,7 @@ def download_video(videoDownloadURL: str, videoTitle: str):
 
         # Get the file size for the progress bar
         videoFileSize = int(response.headers.get('content-length', 0))
-
+        print(f"Video Title: {videoTitle}.mp4")
         with open(f"{videoTitle}.mp4", "wb") as fileHandler, tqdm(
             #desc=f"Downloading {videoTitle}.mp4",
             desc=f"Downloading...",
@@ -28,7 +28,8 @@ def download_video(videoDownloadURL: str, videoTitle: str):
                 fileHandler.write(data)
                 progressBar.update(len(data))
 
-        print(f"Download of '{videoTitle}.mp4' complete.")
+        #print(f"Download of '{videoTitle}.mp4' complete.")
+        print(f"Download of '{videoTitle[0:25]}...' complete.")
     except requests.exceptions.HTTPError as e:
         print(f"Failed to download the video: {e}")
     except Exception as e:

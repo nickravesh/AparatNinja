@@ -79,7 +79,7 @@ def get_video_download_url(videoUrl: str, videoQuality: str) -> tuple:
             video_title = videoTitleElement.text
 
             # Print the video title
-            print("Video Title:", video_title)    
+            #print("Video Title:", video_title)    
 
             # close the driver as its no longer needed
             driver.quit()

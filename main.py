@@ -23,8 +23,11 @@ userPlaylistURL = text(message="Enter The Playlist URL:\n",
 loading_animation.show_loading_animation(custom_message="Fetching Playlist Items...")
 listOfURLs = getPlaylistItems.get_playlist_items_url(userPlaylistURL)
 loading_animation.show_loading_animation(False, custom_message="Fetching Playlist Items...DONE!")
+
 # get the first video of the playlist to check for available qualities for it
+loading_animation.show_loading_animation(custom_message="Checking For Available Video Qualities...")
 sampleVideoFromPlaylist = getVideoDownloadURL.get_video_download_url(listOfURLs[0], "144p")
+loading_animation.show_loading_animation(False, custom_message="Checking For Available Video Qualities...DONE!")
 
 # get user preferred quality for downloading videos
 userSelectedQuality = select(message="In What Quality You Want To Download Videos:",

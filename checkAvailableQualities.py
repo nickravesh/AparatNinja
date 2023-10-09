@@ -12,7 +12,8 @@ def check_available_qualities(directDownloadURL: str) -> list:
         if requests.get(url, stream=True).status_code == 200:
             validQualities.append(url)
         else:
-            print(f"the URL {url[50]} has discarded")
+            #print(f"the URL {url[50]} has discarded")
+            pass
 
 
     validQualitiesTags = []
