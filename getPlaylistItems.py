@@ -17,6 +17,7 @@ def get_playlist_items_url(playlistURL: str) -> list:
 
             # Navigate to the playlist page
             driver.get(playlistURL)
+            driver.implicitly_wait(30)
 
             # Locate the element with class "playlist-list"
             playlist_list_element = driver.find_element(By.CLASS_NAME, "playlist-list")
