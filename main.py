@@ -21,7 +21,7 @@ userPlaylistURL = text(message="Enter The Playlist URL:\n",
 
 # fetch the list of videos inside the given playlist
 loading_animation.show_loading_animation(custom_message="Fetching Playlist Items...")
-listOfURLs = getPlaylistItems.get_playlist_items_url(userPlaylistURL)
+listOfURLs, playlistName = getPlaylistItems.get_playlist_items_url(userPlaylistURL)
 loading_animation.show_loading_animation(False, custom_message="Fetching Playlist Items...DONE!")
 
 # get the first video of the playlist to check for available qualities for it

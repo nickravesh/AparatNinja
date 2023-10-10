@@ -36,9 +36,12 @@ def get_playlist_items_url(playlistURL: str) -> list:
             #for url in playlist_urls:
             #    print(url)
 
+            playlist_name = driver.find_element(By.CLASS_NAME, "playlist-field")
+            playlist_name = playlist_name.find_element(By.TAG_NAME, "h1").text
+
             # Close the WebDriver and return the URLs if successful
             driver.quit()
-            return playlist_urls
+            return playlist_urls, playlist_name
 
         except NoSuchElementException as e:
             driver.quit()
