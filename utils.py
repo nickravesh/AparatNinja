@@ -11,7 +11,7 @@ class LoadingAnimation:
         # Constants
         self.LOADING_FRAMES = ["■□□□", "□■□□", "□□■□", "□□□■"]
         self.LOADING_MESSAGE = "The task is in progress, please wait..."
-        self.CLEAR_MESSAGE = " " * 50  # Adjust the number of spaces as needed
+        self.CLEAR_MESSAGE = " " * 55  # Adjust the number of spaces as needed
 
         # Flags to control the loading animation
         self.loading_animation_running = False

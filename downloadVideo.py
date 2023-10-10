@@ -3,20 +3,27 @@ import requests
 from tqdm import tqdm
 
 
-def download_video(videoDownloadURL: str, videoTitle: str):
+def download_video(videoDownloadURL: str, videoTitle: str, playlistName: str):
+    try: # create directory based on playlist name to save videos in it
+        if os.path.exists("Downloads") == False:
+            os.mkdir("Downloads")
+        os.mkdir(f"Downloads/{playlistName}")
+    except:
+        pass
+
     try:
         response = requests.get(videoDownloadURL, stream=True)
         response.raise_for_status()
 
         # Check if the file already exists
-        if os.path.isfile(f"{videoTitle}.mp4"):
+        if os.path.isfile(f"Downloads/{playlistName}/{videoTitle}.mp4"):
             print(f"The file '{videoTitle}.mp4' already exists.")
             return
 
         # Get the file size for the progress bar
         videoFileSize = int(response.headers.get('content-length', 0))
         print(f"Video Title: {videoTitle}.mp4")
-        with open(f"{videoTitle}.mp4", "wb") as fileHandler, tqdm(
+        with open(f"Downloads/{playlistName}/{videoTitle}.mp4", "wb") as fileHandler, tqdm(
             #desc=f"Downloading {videoTitle}.mp4",
             desc=f"Downloading...",
             total=videoFileSize,
