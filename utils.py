@@ -17,7 +17,7 @@ class LoadingAnimation:
         self.loading_animation_running = False
         self.loading_thread = None
 
-    def show_loading_animation(self, display=True, custom_message=None):
+    def show_loading_animation(self, display=True, custom_message=None, disable_message=False):
         if display:
             # If the loading animation is already running, return
             if self.loading_animation_running:
@@ -47,6 +47,8 @@ class LoadingAnimation:
                 sys.stdout.write("\r" + self.CLEAR_MESSAGE + "\r")  # Clear the loading message
                 if custom_message:
                     print(" " + f"{Fore.GREEN}{Style.BRIGHT}{custom_message}")  # Print a custom message if provided
+                elif disable_message == True:
+                    return
                 else:
                     print(" Task completed!")  # Print "Task completed" as the default message
 

@@ -1,4 +1,5 @@
 import time
+import utils
 from colorama import Fore
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -55,7 +56,7 @@ def get_playlist_items_url(playlistURL: str) -> list:
             time.sleep(2)
 
     # print error message and exit in case of unsuccessful connection
-    print(f"{Fore.LIGHTRED_EX}Unable to connect, Please check your internet connection and try again.{Fore.RESET}")
+    utils.loading_animation.show_loading_animation(False, custom_message=f"{Fore.LIGHTRED_EX}Unable to connect, Please check your internet connection{Fore.RESET}")
     return exit()
 
 

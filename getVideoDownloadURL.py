@@ -1,4 +1,5 @@
 import time
+import utils
 from colorama import Fore
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -95,7 +96,7 @@ def get_video_download_url(videoUrl: str, videoQuality: str) -> tuple:
             #print(f"An error occurred: {e}")
             time.sleep(2)
 
-    print(f"{Fore.LIGHTRED_EX}Unable to connect, Please check your internet connection{Fore.RESET}")
+    utils.loading_animation.show_loading_animation(False, custom_message=f"{Fore.LIGHTRED_EX}Unable to connect, Please check your internet connection{Fore.RESET}")
     return exit()
 
 

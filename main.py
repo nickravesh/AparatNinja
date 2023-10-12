@@ -49,6 +49,3 @@ for item in listOfURLs:
     #directDownloadLinkWithTitle.append(getVideoDownloadURL.get_video_download_url(item, "144p"))
     directDownloadLinkAndVideoTitle = getVideoDownloadURL.get_video_download_url(item, userSelectedQuality)
     downloadVideo.download_video(directDownloadLinkAndVideoTitle[0], directDownloadLinkAndVideoTitle[1], playlistName)
-
-
-# TODO: fix firefox webdriver not fully exit in case of an error. fix it with try except that in except in quite the driver
