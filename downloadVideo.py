@@ -11,6 +11,13 @@ def download_video(videoDownloadURL: str, videoTitle: str, playlistName: str):
     except:
         pass
 
+    # replace the slash and back-slash with another character if exists in video title
+    while "/" in videoTitle or "\\" in videoTitle:
+        if "/" in videoTitle:
+            videoTitle = videoTitle.replace("/", "-")
+        if "\\" in videoTitle:
+            videoTitle = videoTitle.replace("\\", "-")
+
     try:
         response = requests.get(videoDownloadURL, stream=True)
         response.raise_for_status()
