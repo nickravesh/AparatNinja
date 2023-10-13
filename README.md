@@ -41,13 +41,13 @@ Go to the project directory
 Install dependencies
 
 ```bash
-  pip install -r requirements.txt
+  pip3 install -r requirements.txt
 ```
 
 Start AparatNinja
 
 ```bash
-  python main.py
+  python3 main.py
 ```
 
 
