@@ -62,5 +62,3 @@ def get_playlist_items_url(playlistURL: str) -> list:
 
 # usage:
 #get_playlist_items_url("https://www.aparat.com/playlist/example")
-
-# TODO: store the extracted urls in a list

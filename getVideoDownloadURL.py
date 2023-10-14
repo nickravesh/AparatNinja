@@ -101,5 +101,5 @@ def get_video_download_url(videoUrl: str, videoQuality: str) -> tuple:
 
 
 # usage:
-#download_link_and_video_title = get_video_download_url(videoUrl='https://www.aparat.com/v/NnJhV', videoQuality='144p')
+#download_link_and_video_title = get_video_download_url(videoUrl='https://www.aparat.com/v/[videoId]', videoQuality='144p')
 # print(download_link_and_video_title)

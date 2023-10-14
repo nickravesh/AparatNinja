@@ -1,10 +1,10 @@
-from colorama import Fore
-from questionary import text, select, Style
+import downloadVideo
 import getPlaylistItems
+from colorama import Fore
 import getVideoDownloadURL
 import checkAvailableQualities
-import downloadVideo
 from utils import loading_animation
+from questionary import text, select, Style
 
 print("""
     ___                           __  _   ___         _      
