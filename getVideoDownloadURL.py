@@ -34,19 +34,19 @@ def get_video_download_url(videoUrl: str, videoQuality: str) -> tuple:
 
             # click on the right slider menu of the aparat.com
             aparat_rightMenu = driver.find_element(By.XPATH, '/html/body/div[2]/header/div/div[1]/div[1]/div[1]/button')
-            aparat_rightMenu.click()
+            # aparat_rightMenu.click()
 
 
-            # click on the middle of the page just to close the opened menu
-            time.sleep(0.5)
-            try: # if Irancell banner exists, close it
-                aparat_irancellBanner = driver.find_element(By.CSS_SELECTOR, '.announce-close > svg:nth-child(1) > use:nth-child(1)')
-                aparat_irancellBanner.click()
-            except:
-                continue
-            time.sleep(0.2)
-            aparat_pageCenter = driver.find_element(By.XPATH, '/html/body/div[2]/main/div[1]')
-            aparat_pageCenter.click()
+            # # click on the middle of the page just to close the opened menu
+            # time.sleep(0.5)
+            # try: # if Irancell banner exists, close it
+            #     aparat_irancellBanner = driver.find_element(By.CSS_SELECTOR, '.announce-close > svg:nth-child(1) > use:nth-child(1)')
+            #     aparat_irancellBanner.click()
+            # except:
+            #     continue
+            # time.sleep(0.2)
+            # aparat_pageCenter = driver.find_element(By.XPATH, '/html/body/div[2]/main/div[1]')
+            # aparat_pageCenter.click()
 
             # scroll down the page a little to load needed content
             #driver.execute_script("window.scrollBy(0, 1000);")
